@@ -20,7 +20,7 @@ include (CMakeParseArguments)
 function(clone_external_git_repo)
   set(options ALWAYS_UPDATE TAG)
   set(oneValueArgs URL TARGET_DIR)
-  cmake_parse_arguments(clone_external_ "${options}" "${oneValueArgs}" "" ${ARGN} )
+  cmake_parse_arguments(clone_external "${options}" "${oneValueArgs}" "" ${ARGN} )
 
   if(NOT EXISTS "${clone_external_TARGET_DIR}/_.git")
     message(STATUS "Cloning repo ${clone_external_URL}")
@@ -57,7 +57,7 @@ endfunction(clone_external_git_repo)
 function(add_external_git_repo)
   set(options ALWAYS_UPDATE TAG ADD_SUBDIR)
   set(oneValueArgs URL PREFIX)
-  cmake_parse_arguments(external_git_ "${options}" "${oneValueArgs}" "" ${ARGN} )
+  cmake_parse_arguments(external_git "${options}" "${oneValueArgs}" "" ${ARGN} )
 
   clone_external_git_repo(
     URL ${external_git_URL} 
